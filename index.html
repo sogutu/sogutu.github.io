@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>School Titles</title>
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+        <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    </head>
+    <style>
+        body {padding: 0; margin: 0 }
+        html, body, #map { height: 95% }
+    </style>
+    <body>
+        <h2>The progress report on Titling of Primary Schools</h2>
+                <div id="map"></div>
+
+        <script>
+        $.getJSON('schools.geojson', function(data) {
+                var geojson = L.geoJson(data, {
+                  onEachFeature: function (feature, layer) {
+                          layer.bindPopup("Name: " + feature.properties.name + '<br />'
+                                                        + 'Status: '+ feature.properties.laikipia_S + '<br />'
+                                                        + 'Plan: '+ feature.properties.laikipia_P);
+                 
+                  }
+                  }).addTo(map);
+                  });
+        var map = L.map('map').setView([0.3771, 36.7884], 9);
+        var OpenStreetMap_Mapnik = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	   maxZoom: 19,
+	   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+       }).addTo(map);
+            
+            
+            
+        </script>
+        
+
+    </body>
+</html>
