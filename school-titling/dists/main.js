@@ -35,12 +35,21 @@ var PPri = L.geoJSON(pprimary, {
 PPri.addTo(marker);
     //marker.addTo(map); 
 
+    // create subcounty style
+var subcountiesStyle = {
+    color: "black",
+    weight: "0.4",
+    fillOpacity: "0.4",
+    fillColor: "pink",
+};
+        
 var SCounties = L.geoJSON(subcounties, {
     onEachFeature: function(feature, layer) {
         layer.bindPopup(feature.properties.CONSTITUEN)
-    }
+    },
+    style: subcountiesStyle,
 });
-//SCounties.addTo(map);
+SCounties.addTo(map);
 
 var marker2 = L.markerClusterGroup();
 var PSec = L.geoJSON(secschools, {
@@ -67,7 +76,7 @@ var before2016 = L.geoJSON(tb2016, {
     }
 });
 before2016.addTo(marker4);
-//marker4.addTo(map);
+marker4.addTo(map);
 
 /*============================================================================================
         Layer Control
